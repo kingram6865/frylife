@@ -4,7 +4,7 @@ import axios from 'axios';
 function UpdateReview(props){
 	const [title, setTitle] = useState(props.review.fields.title);
 	const [text, setText] = useState(props.review.fields.text);
-	const [author, setAuthor] = useState(props.review.fields.authorauthor);
+	const [author, setAuthor] = useState(props.review.fields.author);
 
 	async function handleSubmit(event){
 		event.preventDefault();
@@ -14,8 +14,8 @@ function UpdateReview(props){
 			author
 		}
 
-		const airtableURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/frylife`;
-		await axios.post(airtableURL, { fields }, {
+		const airtableURL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE}/frylife/${props.review.id}`;
+		await axios.put(airtableURL, { fields }, {
 			headers: {
 				'Authorization': `Bearer ${process.env.REACT_APP_AIRTABLE_KEY}`,
 				'Content-Type': 'application/json'
