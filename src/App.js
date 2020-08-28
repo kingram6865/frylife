@@ -1,10 +1,12 @@
 import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
+import CreateReview from './components/CreateReview';
 import Review from './components/Review';
 import './App.css';
 
 function App() {
   const [reviews, setReviews] = useState([]);
+  const [fetchReviews, setFetchReviews] = useState(false);
 
   useEffect(()=>{
     // Cannot run async functions directly in useEffect
@@ -21,17 +23,26 @@ function App() {
     }
     getReviews();
 
-  }, []);
+  }, [fetchReviews]);
 
   return (
     <div className="App">
       <div className="review-container">
       {
         reviews.map((review)=>(
-          <Review review={review} key={review.id} />
+          <Review 
+            review={review} 
+            key={review.id} 
+            fetchReviews={fetchReviews}
+            setFetchReviews={setFetchReviews}
+          />
         ))
       }
       </div>
+      <CreateReview 
+        fetchReviews={fetchReviews}
+        setFetchReviews={setFetchReviews}
+      />
     </div>
   );
 }
