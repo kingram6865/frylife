@@ -22,9 +22,6 @@ function UpdateReview(props){
 			}
 		});
 		props.setFetchReviews(!props.fetchReviews);
-		setTitle('');
-		setText('');
-		setAuthor('');
 	}
 
 	return (
@@ -37,7 +34,7 @@ function UpdateReview(props){
 			onChange={(event) => setTitle(event.target.value)}
 			/>
 		<label htmlFor="text">Text:</label>
-		<input 
+		<textarea 
 			name="text" 
 			type="text" 
 			value={text} 
